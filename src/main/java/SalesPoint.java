@@ -1,6 +1,7 @@
 import model.Sale;
 import model.SaleItem;
 import taxing.TaxingItemPolicy;
+import utils.Utils;
 
 /**
  * Represents the point of sale of the store
@@ -29,16 +30,18 @@ public class SalesPoint {
 
         for(SaleItem item : sale.getShoppingCart()){
             float taxes = this.taxingScheme.applyTaxes(item);
-            item.setTaxesTotal(taxes);
+            item.setTaxesTotal(Utils.roundTwoDecimals(taxes));
             totalTaxes += taxes;
 
-            subTotal += item.getSubTotal();
-            total += item.getSubTotal() + taxes;
+            float itemSubtotal = item.getSubTotal();
+
+            subTotal += Utils.roundTwoDecimals(itemSubtotal);
+            total += Utils.roundTwoDecimals(itemSubtotal + taxes);
         }
 
         sale.setSubTotal(subTotal);
         sale.setTotalTaxes(totalTaxes);
-        sale.setTotal(total);
+        sale.setTotal(Utils.roundTwoDecimals(total));
 
         return sale;
     }

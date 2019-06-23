@@ -55,4 +55,5 @@ public class Sale {
     public float getTotalTaxes() {
         return totalTaxes;
     }
+
 }
