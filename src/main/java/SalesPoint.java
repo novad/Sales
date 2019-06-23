@@ -1,4 +1,5 @@
 import model.Sale;
+import model.SaleItem;
 import taxing.TaxingItemPolicy;
 
 /**
@@ -22,9 +23,29 @@ public class SalesPoint {
      * @return Finalized sale
      */
     public Sale finalizeSale(Sale sale){
-        // TODO: implement
-        return null;
+        float subTotal = 0;
+        float totalTaxes = 0;
+        float total = 0;
+
+        for(SaleItem item : sale.getShoppingCart()){
+            float taxes = this.taxingScheme.applyTaxes(item);
+            item.setTaxesTotal(taxes);
+            totalTaxes += taxes;
+
+            subTotal += item.getSubTotal();
+            total += item.getSubTotal() + taxes;
+        }
+
+        sale.setSubTotal(subTotal);
+        sale.setTotalTaxes(totalTaxes);
+        sale.setTotal(total);
+
+        return sale;
     }
 
+    
+    public void printReceipt(Sale sale, ReceiptGenerator receiptGenerator){
+        receiptGenerator.printReceipt(sale);
+    }
 
 }
