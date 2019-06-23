@@ -12,9 +12,17 @@ public class Utils {
      * @param number Number to format
      * @return Formatted number.
      */
-    public static float roundTwoDecimals(float number) {
+    public static float roundClosestDecimal(float number) {
         float roundedNumber = Math.round(number * 20) / 20.0f;
-        DecimalFormat formattedNumber = new DecimalFormat("#.##");
-        return Float.valueOf(formattedNumber.format(roundedNumber));
+        return roundTwoDecimals(roundedNumber);
     }
-}
+
+    /**
+     * Rounds a given number to 2 decimals
+     * @param number Number to round
+     * @return Rounded number
+     */
+    public static float roundTwoDecimals(float number) {
+        DecimalFormat formattedNumber = new DecimalFormat("#.##");
+        return Float.valueOf(formattedNumber.format(number));
+    }}
