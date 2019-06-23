@@ -36,10 +36,10 @@ public class ItalyTaxing implements TaxingItemPolicy {
     @Override
     public float applyTaxes(SaleItem item) {
         float totalTaxes = applySaleTax(item);
-        totalTaxes = Utils.roundTwoDecimals(totalTaxes);
+        totalTaxes = Utils.roundClosestDecimal(totalTaxes);
         totalTaxes += applyImportTax(item);
 
-        return Utils.roundTwoDecimals(totalTaxes);
+        return Utils.roundClosestDecimal(totalTaxes);
     }
 
 
