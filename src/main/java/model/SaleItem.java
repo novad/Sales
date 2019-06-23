@@ -6,7 +6,7 @@ public class SaleItem {
     private float subTotal;
     private float taxesTotal;
 
-    SaleItem(Product product, int units) {
+    public SaleItem(Product product, int units) {
         this.product = product;
         this.units = units;
         this.subTotal = product.getShelfPrice() * this.units;
