@@ -18,6 +18,15 @@ public class ItalyTaxing implements TaxingItemPolicy {
     private static final float BASIC_SALE_TAX  = 0.1f;
     private static final float IMPORT_TAX  = 0.05f;
 
+    /**
+     * Products that are exempt from basic sales taxation.
+     */
+    private static final EnumSet EXEMPT_CATEGORIES = EnumSet.of(Category.MEDICINE, Category.BOOK, Category.FOOD);
+
+    /**
+     * Countries exempt from import tax.
+     */
+    private static final EnumSet EXEMPT_COUNTRIES = EnumSet.of(Country.ITALY);
 
     /**
      * Applies the taxing scheme of sales + import taxes if applicable for a specific item.
@@ -26,9 +35,23 @@ public class ItalyTaxing implements TaxingItemPolicy {
      */
     @Override
     public float applyTaxes(SaleItem item) {
-        //TODO: implement
-        return 0.0f;
+        float totalTaxes = applySaleTax(item);
+        totalTaxes = Utils.roundTwoDecimals(totalTaxes);
+        totalTaxes += applyImportTax(item);
+
+        return Utils.roundTwoDecimals(totalTaxes);
     }
 
 
+    /* Returns the sales tax to pay for the givne item, unless it's exempt */
+    private float applySaleTax(SaleItem item) {
+        Category category = item.getProduct().getCategory();
+        return EXEMPT_CATEGORIES.contains(category) ? 0 : item.getSubTotal() * BASIC_SALE_TAX;
+    }
+
+    /* Returns the import tax to pay for the givne item, unless it's exempt */
+    private float applyImportTax(SaleItem item){
+        Country productCountry = item.getProduct().getCountryOfOrigin();
+        return EXEMPT_COUNTRIES.contains(productCountry) ? 0 : item.getSubTotal() * IMPORT_TAX;
+    }
 }

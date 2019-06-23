@@ -43,7 +43,7 @@ public class SalesPoint {
         return sale;
     }
 
-    
+
     public void printReceipt(Sale sale, ReceiptGenerator receiptGenerator){
         receiptGenerator.printReceipt(sale);
     }
