@@ -1,7 +1,5 @@
 package model;
 
-import model.Product;
-
 public class SaleItem {
     private Product product;
     private int units;
