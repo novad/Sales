@@ -16,7 +16,7 @@ public class ConcreteRecepitGenerator implements ReceiptGenerator {
                     ": " + totalPrizeItem );
         }
         System.out.println();
-        System.out.println("Total Taxes: " + sale.getSubTotal());
+        System.out.println("Total Taxes: " + sale.getTotalTaxes());
         System.out.println("Total: " + sale.getTotal());
         System.out.println("===================================");
     }
