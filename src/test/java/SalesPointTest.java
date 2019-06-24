@@ -3,25 +3,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import taxing.ItalyTaxing;
-import utils.Utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class SalesPointTest {
-
-    // Test products
-    Book bookItaly = new Book(0, "The Name of the Rose", 12.49f, Country.ITALY);
-    Food chocolateImported = new Food(3, "Imported Chocolate box", 10, Country.GERMANY);
-    Food chocolateImportedExpensive = new Food(4, "Imported Chocolate box 2", 11.25f, Country.US);
-    Food chocolateBarLocal = new Food(5, "Chocolate bar", 0.85f, Country.ITALY);
-    Medicine medicine = new Medicine(8, "Headache Pills", 9.75f, Country.ITALY);
-    Product musicCD = new Product(10, "Music CD", 14.99f, Country.ITALY);
-    Product perfumeImported = new Product(11, "Imported bottle of perfume", 27.99f, Country.FRANCE);
-    Product perfumeImportedExpensive = new Product(12, "Imported bottle of expensive perfume", 47.5f, Country.FRANCE);
-    Product perfumeLocal = new Product(13, "Bottle of perfume", 18.99f, Country.ITALY);
-
 
     private SalesPoint salesPoint;
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -36,9 +24,9 @@ public class SalesPointTest {
     public void givenTest1(){
 
         Sale newSale = new Sale(sdf.format(new Date()));
-        newSale.addPurchase(bookItaly, 2);
-        newSale.addPurchase(musicCD, 1);
-        newSale.addPurchase(chocolateBarLocal, 1);
+        newSale.addPurchase(ProductDummies.bookItaly, 2);
+        newSale.addPurchase(ProductDummies.musicCD, 1);
+        newSale.addPurchase(ProductDummies.chocolateBarLocal, 1);
 
         Sale sale = this.salesPoint.finalizeSale(newSale);
 
@@ -53,8 +41,8 @@ public class SalesPointTest {
     public void givenTest2(){
 
         Sale newSale = new Sale(sdf.format(new Date()));
-        newSale.addPurchase(chocolateImported, 1);
-        newSale.addPurchase(perfumeImportedExpensive, 1);
+        newSale.addPurchase(ProductDummies.chocolateImported, 1);
+        newSale.addPurchase(ProductDummies.perfumeImportedExpensive, 1);
 
         Sale sale = this.salesPoint.finalizeSale(newSale);
 
@@ -79,10 +67,10 @@ public class SalesPointTest {
     public void givenTest3(){
 
         Sale newSale = new Sale(sdf.format(new Date()));
-        newSale.addPurchase(perfumeImported, 1);
-        newSale.addPurchase(perfumeLocal, 1);
-        newSale.addPurchase(medicine, 1);
-        newSale.addPurchase(chocolateImportedExpensive, 3);
+        newSale.addPurchase(ProductDummies.perfumeImported, 1);
+        newSale.addPurchase(ProductDummies.perfumeLocal, 1);
+        newSale.addPurchase(ProductDummies.medicine, 1);
+        newSale.addPurchase(ProductDummies.chocolateImportedExpensive, 3);
 
         Sale sale = this.salesPoint.finalizeSale(newSale);
 
