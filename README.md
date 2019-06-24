@@ -3,7 +3,7 @@ By Daniel Nova.
 Solution to the tax sales problem. The project is laid out as a gradle project, so if wanted it could be easily imported into IDEs like IntelliJ.
 
 ## Requisites
-* Java must be installed, and its libs set to JAVA_HOME set in the enviroment variables.
+* Java must be installed, and JAVA_HOME properly set in the enviroment variables.
 * Gradle must be installed, it can be downloaded from https://docs.gradle.org/current/userguide/installation.html#installation
 
 To run the code you need to follow 2 steps:
