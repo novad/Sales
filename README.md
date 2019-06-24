@@ -1,11 +1,13 @@
 # Sales taxes Problem
 By Daniel Nova.
+
 Solution to the tax sales problem. The project is laid out as a gradle project, so if wanted it could be easily imported into IDEs like IntelliJ.
 
 ## Requisites
 * Java must be installed, and JAVA_HOME properly set in the enviroment variables.
 * Gradle must be installed, it can be downloaded from https://docs.gradle.org/current/userguide/installation.html#installation
 
+## Building and Running
 To run the code you need to follow 2 steps:
 1. Build from the gradle file
    * Run as `./gradlew build` and wait for the build and testing process to finish.
